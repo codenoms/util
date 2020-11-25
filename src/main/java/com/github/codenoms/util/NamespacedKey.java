@@ -17,8 +17,14 @@ public final class NamespacedKey
                                             : key.split(":");
         this.key       = splits[splits.length - 1];
         this.namespace = Stream.of(splits)
-                               .limit(splits.length - 1)
+                               .limit(splits.length - 2)
                                .collect(Collectors.joining(":"));
+    }
+
+    public NamespacedKey(String namespace, String key)
+    {
+        this.namespace = namespace;
+        this.key       = key;
     }
 
     public String getNamespace()
