@@ -13,11 +13,11 @@ public final class NamespacedKey
     {
         if(key == null)
             throw new NullPointerException("key is null");
-        String[] splits = key.contains(":") ? new String[]{"minecraft", key}
-                                            : key.split(":");
+        String[] splits = !key.contains(":") ? new String[]{"minecraft", key}
+                                             : key.split(":");
         this.key       = splits[splits.length - 1];
         this.namespace = Stream.of(splits)
-                               .limit(splits.length - 2)
+                               .limit(splits.length - 1)
                                .collect(Collectors.joining(":"));
     }
 
